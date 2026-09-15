@@ -30,13 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => res.send("Connection established"));
 app.get("/about", (req, res) => res.json({ message: "This is about page" }));
-app.get("/api/health", (req, res) =>
-  res.json({
-    status: "online",
-    database:
-      mongoose.connection.readyState === 1 ? "connected" : "disconnected",
-  }),
-);
+
 app.get("/adminData", verifyToken, (req, res) =>
   res.json({ message: "Protected Admin Data", admin: req.user }),
 );
