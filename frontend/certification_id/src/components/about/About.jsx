@@ -12,14 +12,14 @@ function About() {
 
           <p className="about-subtitle">
             A Blockchain-Based Certificate Verification System built using
-            Ethereum Sepolia, SHA-256, MongoDB, OCR and React.
+            Ethereum Sepolia, SHA-256, MongoDB, OCR, IPFS and React.
           </p>
         </div>
 
-        <div className="hero-circle blue"></div>
-        <div className="hero-circle red"></div>
-        <div className="hero-circle yellow"></div>
-        <div className="hero-circle green"></div>
+        <div className="hero-circle hero-circle--blue" aria-hidden="true" />
+        <div className="hero-circle hero-circle--red" aria-hidden="true" />
+        <div className="hero-circle hero-circle--yellow" aria-hidden="true" />
+        <div className="hero-circle hero-circle--green" aria-hidden="true" />
       </section>
 
       {/* Content */}
@@ -47,6 +47,8 @@ function About() {
             <li>SHA-256 hash generation and verification</li>
 
             <li>Certificate verification using OCR</li>
+
+            <li>Original PDF and image storage using Pinata and IPFS</li>
 
             <li>Bulk certificate upload through Excel</li>
 
@@ -82,6 +84,10 @@ function About() {
 
             <span>Tesseract OCR</span>
 
+            <span>Pinata</span>
+
+            <span>IPFS</span>
+
             <span>JWT</span>
 
             <span>Multer</span>
@@ -105,6 +111,11 @@ function About() {
             <li>Certificate information is stored in MongoDB.</li>
 
             <li>
+              An admin can upload the original certificate PDF or image to
+              Pinata, which returns an IPFS CID and gateway URL.
+            </li>
+
+            <li>
               Users verify certificates using the certificate ID or an uploaded
               image.
             </li>
@@ -116,6 +127,11 @@ function About() {
 
             <li>
               If both hashes match, the certificate is verified as authentic.
+            </li>
+
+            <li>
+              When an original document is available, users can open it from
+              the verification result.
             </li>
           </ol>
         </div>

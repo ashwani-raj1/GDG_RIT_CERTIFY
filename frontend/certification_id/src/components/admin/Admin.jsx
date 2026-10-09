@@ -44,7 +44,7 @@ export default function Admin() {
 
   const [file, setFile] = useState(null);
   const [certificateDocument, setCertificateDocument] = useState(null);
-  const [documentCertificateId, setDocumentCertificateId] = useState(""); 
+  const [documentCertificateId, setDocumentCertificateId] = useState("");
 
   /* HANDLE INPUT */
 
@@ -234,10 +234,10 @@ Do you want to view it on Blockchain?`,
     <div className="admin-container">
       {/* BACKGROUND BLOBS */}
 
-      <div className="blob blue"></div>
-      <div className="blob red"></div>
-      <div className="blob yellow"></div>
-      <div className="blob green"></div>
+      <div className="admin-blob admin-blob--blue" aria-hidden="true" />
+      <div className="admin-blob admin-blob--red" aria-hidden="true" />
+      <div className="admin-blob admin-blob--yellow" aria-hidden="true" />
+      <div className="admin-blob admin-blob--green" aria-hidden="true" />
 
       {/* HEADER */}
 
@@ -246,7 +246,7 @@ Do you want to view it on Blockchain?`,
           <h1 className="admin-title">Admin Dashboard</h1>
 
           <p className="admin-subtitle">
-            Manage certificate records and uploads
+            Manage certificate records, uploads, and IPFS documents
           </p>
         </div>
 
@@ -260,7 +260,7 @@ Do you want to view it on Blockchain?`,
       <div className="admin-grid">
         {/* MANUAL ENTRY */}
 
-        <div className="admin-card">
+        <div className="admin-card admin-card--form">
           <h2 className="card-title">Manual Entry</h2>
 
           <form className="admin-form" onSubmit={handleSubmit}>
@@ -317,29 +317,33 @@ Do you want to view it on Blockchain?`,
 
         {/* EXCEL UPLOAD */}
 
-        <div className="admin-card">
+        <div className="admin-card admin-card--upload">
           <h2 className="card-title">Upload Excel File</h2>
 
           <p className="upload-text">
             Upload multiple certificate records using Excel sheet.
           </p>
 
-          <input
-            className="file-input"
-            type="file"
-            accept=".xlsx,.xls"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
+          <label className="file-upload-label">
+            <span>Certificate spreadsheet</span>
+            <input
+              className="file-input"
+              type="file"
+              accept=".xlsx,.xls"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </label>
 
           <button className="admin-btn" onClick={handleFileUpload}>
             Upload Excel
           </button>
         </div>
-          <div className="admin-card">
+        <div className="admin-card admin-card--ipfs">
           <h2 className="card-title">Store Certificate on IPFS</h2>
 
           <p className="upload-text">
-            Upload the original certificate PDF or image permanently.
+            Upload the original PDF or image through Pinata. The returned IPFS
+            CID is saved with this certificate record.
           </p>
 
           <input
@@ -350,12 +354,15 @@ Do you want to view it on Blockchain?`,
             onChange={(e) => setDocumentCertificateId(e.target.value)}
           />
 
-          <input
-            className="file-input"
-            type="file"
-            accept=".pdf,image/png,image/jpeg"
-            onChange={(e) => setCertificateDocument(e.target.files[0])}
-          />
+          <label className="file-upload-label">
+            <span>Original certificate file</span>
+            <input
+              className="file-input"
+              type="file"
+              accept=".pdf,image/png,image/jpeg"
+              onChange={(e) => setCertificateDocument(e.target.files[0])}
+            />
+          </label>
 
           <button
             className="admin-btn"
@@ -367,5 +374,5 @@ Do you want to view it on Blockchain?`,
         </div>
       </div>
     </div>
-  );  
+  );
 }

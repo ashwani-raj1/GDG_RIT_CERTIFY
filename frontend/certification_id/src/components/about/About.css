@@ -82,7 +82,7 @@
     opacity: 0.22;
 }
 
-.red {
+.hero-circle--red {
     width: 300px;
     height: 300px;
     background: #EA4335;
@@ -90,7 +90,7 @@
     left: -80px;
 }
 
-.yellow {
+.hero-circle--yellow {
     width: 280px;
     height: 280px;
     background: #FBBC05;
@@ -98,12 +98,20 @@
     right: -50px;
 }
 
-.green {
+.hero-circle--green {
     width: 250px;
     height: 250px;
     background: #34A853;
     top: 40%;
     left: 65%;
+}
+
+.hero-circle--blue {
+    width: 280px;
+    height: 280px;
+    background: #4285F4;
+    bottom: -120px;
+    left: 22%;
 }
 
 /* ABOUT SECTION */
@@ -326,6 +334,25 @@
 
 @media screen and (max-width: 500px) {
 
+    .about-hero {
+        height: auto;
+        min-height: 330px;
+        padding: 45px 16px;
+    }
+
+    .about-section {
+        width: 100%;
+        margin: 45px auto;
+        padding: 0 16px;
+        gap: 18px;
+    }
+
+    .about-card,
+    .stat-box {
+        padding: 24px 20px;
+        border-radius: 18px;
+    }
+
     .about-title {
         font-size: 30px;
     }
@@ -345,4 +372,8 @@
     .hero-circle {
         filter: blur(70px);
     }
+
+    .tech-stack { gap: 8px; }
+
+    .tech-stack span { padding: 8px 11px; font-size: 13px; }
 }

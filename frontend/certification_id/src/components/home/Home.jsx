@@ -22,8 +22,8 @@ function Home() {
           <p className="hero-description">
             A blockchain-based certificate verification system that enables
             instant authentication using SHA-256 hashing, Ethereum Sepolia
-            blockchain, MongoDB, OCR image verification, and an admin dashboard
-            for secure certificate management.
+            blockchain, MongoDB, OCR image verification, IPFS document storage,
+            and an admin dashboard for secure certificate management.
           </p>
 
           <div className="hero-buttons">
@@ -55,6 +55,8 @@ function Home() {
             <div className="trust-box"> OCR </div>
 
             <div className="trust-box"> MongoDB </div>
+
+            <div className="trust-box"> IPFS </div>
           </div>
         </div>
 
@@ -127,6 +129,15 @@ function Home() {
             <p>
               Add certificates manually or upload multiple certificates through
               Excel files with secure authentication.
+            </p>
+          </div>
+
+          <div className="feature-card">
+            <h3> IPFS Document Storage</h3>
+            <p>
+              Admins can upload an original certificate PDF or image to IPFS
+              through Pinata. Its CID provides a content-based reference to
+              the stored document.
             </p>
           </div>
 

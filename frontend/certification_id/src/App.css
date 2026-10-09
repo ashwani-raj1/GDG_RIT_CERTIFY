@@ -9,8 +9,16 @@ body,
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    padding-top: 76px;
 }
 
 .content {
     flex: 1;
+}
+
+@media (max-width: 680px) {
+    .app {
+        padding-top: 70px;
+    }
 }

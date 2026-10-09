@@ -14,8 +14,8 @@ function Footer() {
           <p className="footer-text">
             A blockchain-based certificate verification system built using
             React, Node.js, Express, MongoDB Atlas, Ethereum Sepolia, SHA-256
-            hashing and OCR to provide secure, tamper-proof certificate
-            authentication.
+            hashing, OCR, and Pinata-backed IPFS storage for original
+            certificate documents.
           </p>
         </div>
 

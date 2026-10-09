@@ -65,7 +65,8 @@ function Verify() {
           <div className="verify-box">
             <h1 className="verify-title">Certificate Verification</h1>
             <p className="verify-subtitle">
-              Enter Certificate ID to verify authenticity using Blockchain.
+              Verify certificate details on blockchain and view the original
+              IPFS document when it has been uploaded by an admin.
             </p>
             <input
               className="verify-input"
@@ -157,6 +158,11 @@ function Verify() {
                 </p>
               </div>
               <div className="verified-badge">Authentic Certificate</div>
+              {ipfsUrl && (
+                <p className="ipfs-availability">
+                  Original document available through IPFS.
+                </p>
+              )}
               {result.transactionHash && (
                 <button
                   className="verify-button"
@@ -170,12 +176,12 @@ function Verify() {
                   🔗 View on Blockchain
                 </button>
               )}
-                {ipfsUrl && (
+              {ipfsUrl && (
                 <button
                   className="verify-button"
                   onClick={() => window.open(ipfsUrl, "_blank")}
                 >
-                  📄 View Original Certificate
+                  📄 View Original Certificate on IPFS
                 </button>
               )}
 

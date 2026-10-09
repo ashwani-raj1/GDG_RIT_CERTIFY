@@ -484,6 +484,15 @@ body{
 
 @media(max-width:600px){
 
+.hero-section{
+
+    min-height:auto;
+
+    gap:38px;
+
+    padding:52px 20px 58px;
+}
+
 .hero-title{
 
     font-size:2.5rem;
@@ -505,9 +514,34 @@ body{
     font-size:2rem;
 }
 
+.features-section{
+
+    padding:58px 20px;
+}
+
+.features-grid{
+
+    grid-template-columns:minmax(0,1fr);
+
+    gap:18px;
+}
+
 .feature-card{
 
     padding:25px;
+}
+
+@media(max-width:380px){
+
+.hero-title{ font-size:2.15rem; }
+
+.hero-tag{ font-size:.8rem; padding:9px 13px; }
+
+.trust-section{ gap:10px; }
+
+.trust-box{ padding:11px 14px; font-size:.9rem; }
+
+.card-content{ padding:30px 20px; }
 }
 
 .hero-card{
