@@ -4,6 +4,7 @@ import "./Admin.css";
 
 export default function Admin() {
   const navigate = useNavigate();
+  const [isBackendReady, setIsBackendReady] = useState(false);
 
   const handleUnauthorized = useCallback(() => {
     localStorage.removeItem("token");
@@ -29,6 +30,22 @@ export default function Admin() {
         // Keep the user signed in if there is only a temporary network error.
       });
   }, [handleUnauthorized, navigate]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch(`${import.meta.env.VITE_API_URL}/`)
+      .then((response) => {
+        if (response.ok && isMounted) setIsBackendReady(true);
+      })
+      .catch(() => {
+        // Keep the notice visible while Render is waking up or unavailable.
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   /* FORM DATA */
 
@@ -254,6 +271,13 @@ Do you want to view it on Blockchain?`,
           Logout
         </button>
       </div>
+
+      {!isBackendReady && (
+        <p className="render-wake-notice" role="status">
+          Please wait up to 1 minute — the backend is hosted on Render&apos;s free
+          tier and may take a moment to start.
+        </p>
+      )}
 
       {/* GRID */}
 

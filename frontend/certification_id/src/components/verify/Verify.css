@@ -657,6 +657,29 @@ input[type=file]::file-selector-button:hover{
     z-index: 5;
 }
 
+.verify-render-notice {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 11px 15px;
+    border: 1px solid #fcd34d;
+    border-radius: 12px;
+    background: #fffbeb;
+    color: #92400e;
+    font-size: .92rem;
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+    animation: render-notice-pulse 1.25s ease-in-out infinite;
+}
+
+@keyframes render-notice-pulse {
+    50% { opacity: .42; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .verify-render-notice { animation: none; }
+}
+
 .verify-actions {
     display: flex;
     flex-direction: column;

@@ -24,7 +24,8 @@
 .admin-blob--green { right: 10%; bottom: -115px; background: #34a853; }
 
 .admin-header,
-.admin-grid { position: relative; z-index: 1; }
+.admin-grid,
+.render-wake-notice { position: relative; z-index: 1; }
 
 .admin-header {
   display: flex;
@@ -47,6 +48,29 @@
 }
 
 .admin-subtitle { margin: 8px 0 0; color: #64748b; font-size: 1rem; }
+
+.render-wake-notice {
+  max-width: 1280px;
+  margin: -18px auto 28px;
+  padding: 11px 15px;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+  background: #fffbeb;
+  color: #92400e;
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+  animation: render-notice-pulse 1.25s ease-in-out infinite;
+}
+
+@keyframes render-notice-pulse {
+  50% { opacity: .42; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .render-wake-notice { animation: none; }
+}
 
 .logout-btn,
 .admin-btn {
@@ -141,6 +165,7 @@
 @media (max-width: 560px) {
   .admin-container { padding-inline: 14px; padding-bottom: 44px; }
   .admin-header { align-items: stretch; flex-direction: column; margin-bottom: 25px; }
+  .render-wake-notice { margin: -8px 0 20px; font-size: .84rem; }
   .logout-btn { width: 100%; }
   .admin-grid { gap: 16px; }
   .admin-card { padding: 22px 18px; border-radius: 19px; }

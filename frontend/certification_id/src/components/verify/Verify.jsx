@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Verify.css";
 
 function Verify() {
@@ -8,6 +8,23 @@ function Verify() {
   const [imgResult, setImgResult] = useState(null);
   const [isImageVerifying, setIsImageVerifying] = useState(false);
   const [isManualVerifying, setIsManualVerifying] = useState(false);
+  const [isBackendReady, setIsBackendReady] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch(`${import.meta.env.VITE_API_URL}/`)
+      .then((response) => {
+        if (response.ok && isMounted) setIsBackendReady(true);
+      })
+      .catch(() => {
+        // Keep the notice visible while Render is waking up or unavailable.
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleVerify = async () => {
     setImgResult(null);
@@ -61,6 +78,12 @@ function Verify() {
       <div className="blob green" />
 
       <div className="verify-layout">
+        {!isBackendReady && (
+          <p className="render-wake-notice verify-render-notice" role="status">
+            Please wait up to 1 minute — the backend is hosted on Render&apos;s free
+            tier and may take a moment to start.
+          </p>
+        )}
         <section className="verify-actions">
           <div className="verify-box">
             <h1 className="verify-title">Certificate Verification</h1>
