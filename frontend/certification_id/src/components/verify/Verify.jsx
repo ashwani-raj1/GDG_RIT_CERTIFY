@@ -51,6 +51,7 @@ function Verify() {
   };
 
   const result = user || imgResult;
+  const ipfsUrl = result?.data?.ipfsUrl;
 
   return (
     <div className="verify-container">
@@ -169,6 +170,15 @@ function Verify() {
                   🔗 View on Blockchain
                 </button>
               )}
+                {ipfsUrl && (
+                <button
+                  className="verify-button"
+                  onClick={() => window.open(ipfsUrl, "_blank")}
+                >
+                  📄 View Original Certificate
+                </button>
+              )}
+
             </div>
           ) : (
             <div className="result-card error-box">

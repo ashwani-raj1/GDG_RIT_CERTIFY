@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const certificateRoutes = require("./routes/certificateRoutes");
 const verifyToken = require("./middleware/auth");
+const { PinataSDK } = require("pinata");
 
 const app = express();
 const port = process.env.PORT || 5000;

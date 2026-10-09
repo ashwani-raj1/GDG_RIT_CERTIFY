@@ -43,6 +43,8 @@ export default function Admin() {
   /* FILE STATE */
 
   const [file, setFile] = useState(null);
+  const [certificateDocument, setCertificateDocument] = useState(null);
+  const [documentCertificateId, setDocumentCertificateId] = useState(""); 
 
   /* HANDLE INPUT */
 
@@ -175,6 +177,59 @@ Do you want to view it on Blockchain?`,
       .catch((err) => console.log(err));
   };
 
+  const handleCertificateDocumentUpload = async () => {
+  if (!documentCertificateId.trim()) {
+    return alert("Please enter the Certificate ID");
+  }
+
+  if (!certificateDocument) {
+    return alert("Please select a certificate PDF or image");
+  }
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login first");
+    navigate("/signin");
+    return;
+  }
+
+  const uploadData = new FormData();
+  uploadData.append("document", certificateDocument);
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/certificates/${documentCertificateId.trim().toUpperCase()}/document`,
+      {
+        method: "POST",
+        headers: { Authorization: token },
+        body: uploadData,
+      },
+    );
+
+    const data = await response.json();
+
+    if (response.status === 401) {
+      handleUnauthorized();
+      return;
+    }
+
+    if (!response.ok || !data.success) {
+      return alert(data.message || "IPFS upload failed");
+    }
+
+    alert(`Certificate stored on IPFS.\nCID: ${data.ipfsCid}`);
+
+    setDocumentCertificateId("");
+    setCertificateDocument(null);
+  } catch (error) {
+    console.error(error);
+    alert("Unable to upload the certificate document");
+  }
+};
+
+
+
   return (
     <div className="admin-container">
       {/* BACKGROUND BLOBS */}
@@ -280,7 +335,37 @@ Do you want to view it on Blockchain?`,
             Upload Excel
           </button>
         </div>
+          <div className="admin-card">
+          <h2 className="card-title">Store Certificate on IPFS</h2>
+
+          <p className="upload-text">
+            Upload the original certificate PDF or image permanently.
+          </p>
+
+          <input
+            className="admin-input"
+            type="text"
+            placeholder="Enter Certificate ID, e.g. CERT123"
+            value={documentCertificateId}
+            onChange={(e) => setDocumentCertificateId(e.target.value)}
+          />
+
+          <input
+            className="file-input"
+            type="file"
+            accept=".pdf,image/png,image/jpeg"
+            onChange={(e) => setCertificateDocument(e.target.files[0])}
+          />
+
+          <button
+            className="admin-btn"
+            type="button"
+            onClick={handleCertificateDocumentUpload}
+          >
+            Upload to IPFS
+          </button>
+        </div>
       </div>
     </div>
-  );
+  );  
 }

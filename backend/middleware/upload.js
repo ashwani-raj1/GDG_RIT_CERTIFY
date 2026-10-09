@@ -24,4 +24,20 @@ const imageUpload = multer({
   limits: { fileSize: 10 * 1024 * 1024 },
   fileFilter: (req, file, cb) => cb(null, file.mimetype.startsWith("image/")),
 });
-module.exports = { excelUpload, imageUpload };
+
+const documentUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 15 * 1024 * 1024,
+  },
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = [
+      "application/pdf",
+      "image/jpeg",
+      "image/png",
+    ];
+
+    cb(null, allowedTypes.includes(file.mimetype));
+  },
+});
+module.exports = { excelUpload, imageUpload, documentUpload };
